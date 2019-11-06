@@ -1,0 +1,69 @@
+<div class="itens-container">
+
+    <div class="box" *ngFor="let client of clients">
+
+        <div class="content">
+
+            <span>
+                <strong> {{client.name}} </strong>
+            </span>
+
+            <span>
+                <small> http://{{client.address}}:{{client.resourcePort}} </small>
+            </span>
+
+            <span>
+                <small> {{client.server.name}} </small>
+            </span>
+
+            <span>
+                <a routerLink="/res/cameras" [queryParams]='{clients: client.id}'>CÂMERAS</a>
+            </span>
+
+            <span>
+                <a class="delete" (click)="remove(client)"></a>
+            </span>
+        </div>
+
+    </div>
+
+</div>
+
+
+<footer class="footer">
+
+    <div class="content">
+
+        <button class="button is-success is-large" (click)="add()">+1</button>
+
+    </div>
+
+</footer>
+
+<form-modal [resourceName]="'Cliente'" (onFinish)="save()">
+
+    <div class="field">
+        <div class="control">
+            <label>Endereço</label>
+            <input class="input" type="text" [(ngModel)]="currentClient.address">
+        </div>
+    </div>
+    
+    <div class="field">
+        <div class="control">
+            <label>Porta para Recursos</label>
+            <input class="input" type="text" [(ngModel)]="currentClient.resourcePort">
+        </div>
+    </div>
+
+    <div class="field">
+        <div class="control">
+            <label>Servidor</label>
+            <select class="input" [(ngModel)]="currentClient.server">
+                <option *ngFor="let server of servers" [ngValue]='server' > {{server.name}} </option>
+            </select>
+        </div>
+    </div>
+    
+
+</form-modal>

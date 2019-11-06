@@ -1,0 +1,19 @@
+footer.footer .content{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.itens-container{
+    padding: 1rem;
+}
+
+.itens-container .box .content {
+    display: flex;
+    justify-content: space-between;
+}

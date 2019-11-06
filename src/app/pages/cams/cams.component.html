@@ -1,0 +1,64 @@
+<div class="itens-container">
+
+    <div class="box" *ngFor="let cam of cams">
+
+        <div class="content">
+
+            <span>
+                <strong> {{cam.name}} </strong>
+            </span>
+
+            <span>
+                <small> {{cam.address}} </small>
+            </span>
+
+            <span>
+                <small> {{cam.client.server.name}} / {{cam.client.name}} </small>
+            </span>
+
+            <span>
+                <a class="delete" (click)="remove(cam)"></a>
+            </span>
+        </div>
+
+    </div>
+
+</div>
+
+<footer class="footer">
+
+    <div class="content">
+
+        <button class="button is-success is-large" (click)="add()">+1</button>
+
+    </div>
+
+</footer>
+
+<form-modal [resourceName]="'Câmera'" (onFinish)="save()">
+
+    <div class="field">
+        <div class="control">
+            <label>Nome</label>
+            <input class="input" type="text" [(ngModel)]="currentCam.name">
+        </div>
+    </div>
+
+    <div class="field">
+        <div class="control">
+            <label>Endereço</label>
+            <input class="input" type="text" [(ngModel)]="currentCam.address">
+        </div>
+    </div>
+
+    <div class="field">
+        <div class="control">
+            <label>Cliente / Servidor</label>
+            <select class="input" [(ngModel)]="currentCam.client">
+                <option *ngFor="let client of clients" [ngValue]='client'> {{client.name}} / {{client.server.name}} </option>
+            </select>
+        </div>
+    </div>
+
+
+</form-modal>

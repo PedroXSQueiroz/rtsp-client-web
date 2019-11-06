@@ -1,0 +1,81 @@
+<div class="itens-container">
+
+        <div class="box" *ngFor="let session of sessions">
+    
+            <div class="content">
+    
+                <span>
+                    <strong> {{session.server.name}} </strong>
+                </span>
+    
+                <span>
+                    <small> {{session.client.name}} </small>
+                </span>
+    
+                <span>
+                    <small> {{session.camera.name}} </small>
+                </span>
+
+                <button class="button is-success" (click)="startSession(session)" > START </button>
+    
+                <span>
+                    <a class="delete" (click)="remove(session)"></a>
+                </span>
+            </div>
+    
+        </div>
+    
+    </div>
+    
+    <footer class="footer">
+    
+        <div class="content">
+    
+            <button class="button is-success is-large" (click)="add()">+1</button>
+    
+        </div>
+    
+    </footer>
+    
+    <form-modal [resourceName]="'Câmera'" (onFinish)="save()">
+    
+        <div class="field">
+            <div class="control">
+                <label>Servidor</label>
+                <select class="input" [(ngModel)]="currentSession.server">
+                    <option *ngFor="let server of servers" [ngValue]='server'> {{server.name}} </option>
+                </select>
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="control">
+                <label>Cliente</label>
+                <select class="input" [(ngModel)]="currentSession.client">
+                    <option *ngFor="let client of clients" [ngValue]='client'> {{client.name}} </option>
+                </select>
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="control">
+                <label>Câmera</label>
+                <select class="input" [(ngModel)]="currentSession.camera">
+                    <option *ngFor="let camera of cameras" [ngValue]='camera'> {{camera.name}} </option>
+                </select>
+            </div>
+        </div>
+        
+    </form-modal>
+
+    <div class='modal'>
+        
+        <div class='background'></div>
+
+        <div class="modal-content">
+            <canvas #videoCanvas ></canvas>
+        </div>
+
+        <button class="modal-close is-large" aria-label="close" (click)='dismiss()' ></button>
+
+    </div>

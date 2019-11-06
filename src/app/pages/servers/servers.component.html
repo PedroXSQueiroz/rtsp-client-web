@@ -1,0 +1,57 @@
+
+
+<div class="itens-container">
+    
+    <div class="box" *ngFor="let server of servers">
+    
+        <div class="content">
+            
+            <span>
+                <strong> {{server.name}} </strong>
+            </span>
+
+            <span>
+                <small> http://{{server.address}}:{{server.resourcePort}} </small>
+            </span>
+
+            <span>
+                <a routerLink="/res/clients" [queryParams]='{server: server.id}' >CLIENTES</a>
+            </span>
+
+            <span>
+                <a class="delete" (click)="remove(server)"></a>
+            </span>
+        </div>
+    
+    </div>
+
+</div>
+
+<footer class="footer">
+
+    <div class="content">
+
+        <button class="button is-success is-large" (click)="add()">+1</button>
+
+    </div>
+
+</footer>
+
+<form-modal [resourceName]="'Servidor'" (onFinish)="save()">
+
+    <div class="field">
+        <div class="control">
+            <label>Endereço</label>
+            <input class="input" type="text" [(ngModel)]="currentServer.address" >
+        </div>
+    </div>
+    
+
+    <div class="field">
+        <div class="control">
+            <label>Porta para Recursos</label>
+            <input class="input" type="text" [(ngModel)]="currentServer.resourcePort" >
+        </div>
+    </div>
+
+</form-modal>
